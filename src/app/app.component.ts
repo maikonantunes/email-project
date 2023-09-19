@@ -7,13 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'email-project';
-  public username:any
-  public password:any
-
-
-  alertShow(){
-  alert(this.username + this.password)
-  }
   
 }
 
