@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmailEditorComponent } from 'angular-email-editor';
-// import { SMTPClient } from 'emailjs';
+import { SMTPClient } from 'emailjs';
 @Component({
   selector: 'app-email-config',
   templateUrl: './email-config.component.html',
@@ -22,6 +22,8 @@ this.emailEditor=EmailEditorComponent
   }
 
   sendMsg(from:any,to:any){
+    let html:any
+    this.emailEditor.exportHtml((data:any) =>html=data);
     this.client.send(
       {
         text: 'Teste',
@@ -29,6 +31,10 @@ this.emailEditor=EmailEditorComponent
         to: to,
         cc: 'else <else@your-email.com>',
         subject: 'Teste',
+        attachment: [
+          {
+            data:html
+          }]
       },
       (err: any, message: any) => {
         console.log(err || message);
